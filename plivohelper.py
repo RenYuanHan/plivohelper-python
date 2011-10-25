@@ -592,7 +592,7 @@ class GetSpeech(Element):
     grammar: grammar to load
     """
     VALID_ATTRS = ('action', 'method', 'timeout', 
-                   'engine', 'grammar', 'playBeep')
+                   'engine', 'grammar', 'playBeep', 'grammarPath')
 
     def __init__(self, **kwargs):
         Element.__init__(self, **kwargs)
