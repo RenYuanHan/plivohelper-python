@@ -492,7 +492,7 @@ class Response(Element):
     def __init__(self):
         Element.__init__(self)
         self.nestables = ('Speak', 'Play', 'GetDigits', 'Record', 'Dial',
-            'Redirect', 'Wait', 'Hangup', 'PreAnswer', 'Conference', 'GetSpeech',
+            'Redirect', 'Callback', 'Wait', 'Hangup', 'PreAnswer', 'Conference', 'GetSpeech',
             'SIPTransfer')
 
 class Speak(Element):
