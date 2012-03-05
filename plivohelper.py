@@ -451,6 +451,9 @@ class Element(object):
     def addRedirect(self, url=None, **kwargs):
         return self.append(Redirect(url, **kwargs))
 
+    def addCallback(self, url=None, **kwargs):
+        return self.append(Callback(url, **kwargs))
+
     def addSIPTransfer(self, url=None, **kwargs):
         return self.append(SIPTransfer(url, **kwargs))
 
@@ -532,6 +535,18 @@ class Redirect(Element):
     """Redirect call flow to another URL
 
     url: redirect url
+    method: POST or GET (default POST)
+    """
+    VALID_ATTRS = ('method',)
+
+    def __init__(self, url=None, **kwargs):
+        Element.__init__(self, **kwargs)
+        self.body = url
+
+class Callback(Element):
+    """Callback to a URL that this Element was executed (general purpose event)
+
+    url: callback url
     method: POST or GET (default POST)
     """
     VALID_ATTRS = ('method',)
@@ -728,7 +743,7 @@ class PreAnswer(Element):
 
     def __init__(self, **kwargs):
         Element.__init__(self, **kwargs)
-        self.nestables = ('Play', 'Speak', 'GetDigits', 'Wait', 'GetSpeech', 'Redirect', 'SIPTransfer')
+        self.nestables = ('Play', 'Speak', 'GetDigits', 'Wait', 'GetSpeech', 'Redirect', 'Callback', 'SIPTransfer')
 
 
 # Plivo Utility function and Request Validation
