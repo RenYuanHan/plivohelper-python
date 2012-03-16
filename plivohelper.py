@@ -451,8 +451,8 @@ class Element(object):
     def addRedirect(self, url=None, **kwargs):
         return self.append(Redirect(url, **kwargs))
 
-    def addCallback(self, url=None, **kwargs):
-        return self.append(Callback(url, **kwargs))
+    def addNotify(self, url=None, **kwargs):
+        return self.append(Notify(url, **kwargs))
 
     def addSIPTransfer(self, url=None, **kwargs):
         return self.append(SIPTransfer(url, **kwargs))
@@ -492,7 +492,7 @@ class Response(Element):
     def __init__(self):
         Element.__init__(self)
         self.nestables = ('Speak', 'Play', 'GetDigits', 'Record', 'Dial',
-            'Redirect', 'Callback', 'Wait', 'Hangup', 'PreAnswer', 'Conference', 'GetSpeech',
+            'Redirect', 'Notify', 'Wait', 'Hangup', 'PreAnswer', 'Conference', 'GetSpeech',
             'SIPTransfer')
 
 class Speak(Element):
@@ -543,7 +543,7 @@ class Redirect(Element):
         Element.__init__(self, **kwargs)
         self.body = url
 
-class Callback(Element):
+class Notify(Element):
     """Callback to a URL that this Element was executed (general purpose event)
 
     url: callback url
@@ -743,7 +743,7 @@ class PreAnswer(Element):
 
     def __init__(self, **kwargs):
         Element.__init__(self, **kwargs)
-        self.nestables = ('Play', 'Speak', 'GetDigits', 'Wait', 'GetSpeech', 'Redirect', 'Callback', 'SIPTransfer')
+        self.nestables = ('Play', 'Speak', 'GetDigits', 'Wait', 'GetSpeech', 'Redirect', 'Notify', 'SIPTransfer')
 
 
 # Plivo Utility function and Request Validation
